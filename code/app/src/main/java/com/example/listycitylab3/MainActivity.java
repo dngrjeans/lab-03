@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity implements
         cityAdapter.getItem(selectedIndex).setProvince(province);
         cityAdapter.notifyDataSetChanged();
     }
+    @Override
+    public City getCurCity() {
+        return cityAdapter.getItem(selectedIndex);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

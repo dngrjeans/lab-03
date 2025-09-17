@@ -6,15 +6,19 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import java.lang.reflect.Array;
+
 public class EditCityFragment extends DialogFragment {
 
     interface EditCityDialogueListener {
         void editCity (String name, String province);
+        City getCurCity ();
     }
 
     private EditCityFragment.EditCityDialogueListener listener;
@@ -37,7 +41,9 @@ public class EditCityFragment extends DialogFragment {
         EditText editCityText = view.findViewById(R.id.change_city_text);
         EditText editProvinceText = view.findViewById(R.id.change_province_text);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
+        City curCity = listener.getCurCity();
+        editCityText.setText(curCity.getName());
+        editProvinceText.setText(curCity.getProvince());
         return builder
                 .setView(view)
                 .setTitle("Edit City")
